@@ -1,6 +1,8 @@
 .section {
-  padding: 4rem 0;
-  background-color: #FFF0F4;
+  padding: 4.5rem 0;
+  background-color: rgba(255, 240, 244, 0.75);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #FCE7EC;
 }
 
 @media (min-width: 640px) {
@@ -10,7 +12,8 @@
 }
 
 :global(.dark) .section {
-  background-color: #1A0810;
+  background-color: rgba(26, 8, 16, 0.75);
+  border-bottom-color: #381122;
 }
 
 .container {
@@ -57,14 +60,14 @@
 
 :global(.dark) .badge {
   background-color: #2E0B19;
-  color: #F472B6;
+  color: #D9A87C;
   border-color: #4D1831;
 }
 
 .badgeIcon {
   width: 0.875rem;
   height: 0.875rem;
-  color: #E11D48;
+  color: #B4532A;
 }
 
 .title {

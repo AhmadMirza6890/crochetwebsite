@@ -1,0 +1,67 @@
+.homepageWrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background-color: var(--bg-main);
+}
+
+/* Subtle background crochet lace / stitch texture */
+.backgroundPattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(#E11D48 0.75px, transparent 0.75px);
+  background-size: 28px 28px;
+  opacity: 0.04;
+}
+
+:global(.dark) .backgroundPattern {
+  background-image: radial-gradient(#F472B6 0.75px, transparent 0.75px);
+  opacity: 0.03;
+}
+
+/* Ambient glow blobs positioned gracefully down the page */
+.glowBlob1 {
+  position: absolute;
+  top: 15%;
+  left: -10rem;
+  width: 35rem;
+  height: 35rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.12) 0%, rgba(225, 29, 72, 0) 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glowBlob2 {
+  position: absolute;
+  top: 45%;
+  right: -10rem;
+  width: 40rem;
+  height: 40rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(251, 113, 133, 0.1) 0%, rgba(236, 72, 153, 0) 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glowBlob3 {
+  position: absolute;
+  top: 75%;
+  left: 10%;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.08) 0%, rgba(225, 29, 72, 0) 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sectionWrapper {
+  position: relative;
+  z-index: 1;
+}

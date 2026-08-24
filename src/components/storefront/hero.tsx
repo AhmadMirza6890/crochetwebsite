@@ -1,7 +1,21 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, Sparkles, Heart, Star, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  Sparkles,
+  Heart,
+  Star,
+  ShieldCheck,
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Flame,
+  CheckCircle2,
+  Layers,
+} from "lucide-react";
 import styles from "./hero.module.css";
 
 export function HeroSection({
@@ -9,25 +23,86 @@ export function HeroSection({
 }: {
   heroImage?: string | null;
 }) {
-  const displayImage =
-    heroImage ||
-    "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=1000";
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [ambientVideoActive, setAmbientVideoActive] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const bgVideoRef = useRef<HTMLVideoElement>(null);
+
+  const displayImage = heroImage || "/images/crochet-hero-bg.jpg";
+  const videoSrc = "/videos/crochet-hero-bg.mp4";
+  const posterSrc = "/images/crochet-video-poster.jpg";
+
+  useEffect(() => {
+    // Attempt autoplay
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        setIsPlaying(false);
+      });
+    }
+    if (bgVideoRef.current) {
+      bgVideoRef.current.play().catch(() => {});
+    }
+  }, []);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+        if (bgVideoRef.current) bgVideoRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        videoRef.current.play();
+        if (bgVideoRef.current) bgVideoRef.current.play();
+        setIsPlaying(true);
+      }
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
 
   return (
     <section className={styles.section}>
+      {/* Dynamic Ambient Background Video (Infinite Running) */}
+      {ambientVideoActive && (
+        <div className={styles.ambientVideoContainer} aria-hidden="true">
+          <video
+            ref={bgVideoRef}
+            src={videoSrc}
+            poster={posterSrc}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className={styles.ambientVideo}
+          />
+          <div className={styles.ambientVideoOverlay} />
+        </div>
+      )}
+
+      {/* Decorative Crochet Background Pattern & Orbs */}
+      <div className={styles.crochetPatternOverlay} aria-hidden="true" />
+      <div className={styles.ambientGlowOrb1} aria-hidden="true" />
+      <div className={styles.ambientGlowOrb2} aria-hidden="true" />
+
       <div className={styles.container}>
         <div className={styles.grid}>
-          
           {/* Left Text Column */}
           <div className={styles.leftColumn}>
-            
-            {/* Top Badge */}
+            {/* Top Pill Badge */}
             <div className={styles.badge}>
+              <span className={styles.pulseDot} />
               <Sparkles className={styles.badgeIcon} />
-              <span>100% Handcrafted Crochet with Love</span>
+              <span>100% Handcrafted Crochet • Woven with Love</span>
             </div>
 
-            {/* Heading */}
+            {/* Main Heading */}
             <h1 className={styles.heading}>
               Artisanal Crochet,{" "}
               <span className={styles.headingHighlight}>
@@ -37,22 +112,22 @@ export function HeroSection({
 
             {/* Subheading */}
             <p className={styles.subheading}>
-              Explore our boutique of handmade crochet bags, everlasting rose bouquets, lovable amigurumi toys, and custom bespoke commissions made from 100% organic cotton.
+              Explore our boutique of delicate handmade crochet keychains, everlasting flower bouquets, cozy plushies, and custom bespoke commissions crafted from 100% organic milk cotton.
             </p>
 
-            {/* Buttons Row - Guaranteed Alignment */}
+            {/* Action Buttons Row */}
             <div className={styles.buttonGroup}>
               <Link href="/shop" className={styles.primaryBtn}>
                 <span>Shop Pink Collection</span>
                 <ArrowRight className={styles.btnIcon} />
               </Link>
               <Link href="/custom-order" className={styles.secondaryBtn}>
-                <Sparkles className={`${styles.btnIcon} text-rose-500`} />
+                <Sparkles className={styles.btnSparkleIcon} />
                 <span>Custom Commission</span>
               </Link>
             </div>
 
-            {/* Trust Badges - Guaranteed Alignment */}
+            {/* Trust Badges */}
             <div className={styles.trustBadges}>
               <div className={styles.trustItem}>
                 <div className={styles.trustIconWrapper}>
@@ -74,36 +149,116 @@ export function HeroSection({
               </div>
             </div>
 
-          </div>
-
-          {/* Right Visual Column */}
-          <div className={styles.rightColumn}>
-            <div className={styles.imageCardWrapper}>
-              <div className={styles.imageFrame}>
-                <img
-                  src={displayImage}
-                  alt="Handmade crochet collection"
-                  className={styles.heroImg}
-                />
-                <div className={styles.imageOverlay} />
-                <div className={styles.imageTextContainer}>
-                  <p className={styles.imageTitle}>
-                    Every Stitch Tells a Story
-                  </p>
-                  <p className={styles.imageSubtitle}>
-                    Crafted Slowly • Heirloom Quality
-                  </p>
-                </div>
+            {/* Mini Features Ribbon */}
+            <div className={styles.miniFeatures}>
+              <div className={styles.miniFeatureItem}>
+                <CheckCircle2 className={styles.miniCheckIcon} />
+                <span>Slow Fashion</span>
               </div>
-
-              {/* Floating review card */}
-              <div className={styles.floatingReview}>
-                <span className={styles.stars}>★★★★★</span>
-                <span className={styles.reviewText}>500+ Happy Buyers</span>
+              <span className={styles.miniDivider}>•</span>
+              <div className={styles.miniFeatureItem}>
+                <CheckCircle2 className={styles.miniCheckIcon} />
+                <span>Heirloom Quality</span>
+              </div>
+              <span className={styles.miniDivider}>•</span>
+              <div className={styles.miniFeatureItem}>
+                <CheckCircle2 className={styles.miniCheckIcon} />
+                <span>Worldwide Shipping</span>
               </div>
             </div>
           </div>
 
+          {/* Right Visual Column - Infinite Video & Media Showcase */}
+          <div className={styles.rightColumn}>
+            <div className={styles.videoShowcaseWrapper}>
+              {/* Glowing Pink Backdrop Halo */}
+              <div className={styles.glowBackdrop} />
+
+              <div className={styles.videoCard}>
+                {/* Top Live Badge Bar */}
+                <div className={styles.videoCardHeader}>
+                  <div className={styles.liveTag}>
+                    <span className={styles.liveIndicator} />
+                    <span>Studio In-Action</span>
+                  </div>
+                  <div className={styles.craftBadge}>
+                    <Flame className={styles.flameIcon} />
+                    <span>Pure Hand Stitched</span>
+                  </div>
+                </div>
+
+                {/* Video Player Frame */}
+                <div className={styles.videoFrame}>
+                  <video
+                    ref={videoRef}
+                    src={videoSrc}
+                    poster={posterSrc}
+                    autoPlay
+                    loop
+                    muted={isMuted}
+                    playsInline
+                    preload="auto"
+                    className={styles.mainVideo}
+                    onClick={togglePlay}
+                  />
+
+                  {/* Dark subtle bottom gradient for text contrast */}
+                  <div className={styles.videoBottomGradient} />
+
+                  {/* Bottom Video Controls Overlay */}
+                  <div className={styles.videoControlsBar}>
+                    <div className={styles.videoDetails}>
+                      <p className={styles.videoTitle}>Crochet Heart Stitching</p>
+                      <p className={styles.videoSubtitle}>Slow Crafted • 100% Organic Cotton</p>
+                    </div>
+
+                    <div className={styles.controlButtons}>
+                      <button
+                        type="button"
+                        onClick={togglePlay}
+                        className={styles.ctrlBtn}
+                        aria-label={isPlaying ? "Pause Video" : "Play Video"}
+                        title={isPlaying ? "Pause Video" : "Play Video"}
+                      >
+                        {isPlaying ? <Pause className={styles.ctrlIcon} /> : <Play className={styles.ctrlIcon} />}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={toggleMute}
+                        className={styles.ctrlBtn}
+                        aria-label={isMuted ? "Unmute Audio" : "Mute Audio"}
+                        title={isMuted ? "Unmute Audio" : "Mute Audio"}
+                      >
+                        {isMuted ? <VolumeX className={styles.ctrlIcon} /> : <Volume2 className={styles.ctrlIcon} />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Review Badge */}
+                <div className={styles.floatingReview}>
+                  <div className={styles.reviewAvatarGroup}>
+                    <span className={styles.avatarMini}>🌸</span>
+                    <span className={styles.avatarMini}>🎀</span>
+                    <span className={styles.avatarMini}>✨</span>
+                  </div>
+                  <div className={styles.reviewContent}>
+                    <div className={styles.reviewRatingRow}>
+                      <span className={styles.stars}>★★★★★</span>
+                      <span className={styles.ratingNumber}>5.0</span>
+                    </div>
+                    <span className={styles.reviewText}>500+ Happy Customers</span>
+                  </div>
+                </div>
+
+                {/* Floating Bespoke Badge */}
+                <div className={styles.floatingBespokeBadge}>
+                  <Layers className={styles.bespokeIcon} />
+                  <span>Custom Orders Open</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
