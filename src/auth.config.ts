@@ -2,6 +2,9 @@ import type { NextAuthConfig } from "next-auth";
 
 export const authConfig = {
   providers: [],
+  // Required for production hosting (Vercel) where the host header comes
+  // from a proxy — without this every sign-in fails with UntrustedHost.
+  trustHost: true,
   pages: {
     signIn: "/login",
   },
