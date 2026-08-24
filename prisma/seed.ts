@@ -406,6 +406,8 @@ async function main() {
       value: 10,
       maxUses: 500,
       isActive: true,
+      productIds: [],
+      categoryIds: [],
     },
   });
 
@@ -418,6 +420,8 @@ async function main() {
       value: 0,
       maxUses: 1000,
       isActive: true,
+      productIds: [],
+      categoryIds: [],
     },
   });
 
