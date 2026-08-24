@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import prisma from "@/lib/prisma";
 
+// Store uploads directly in Postgres (Media.data) and serve them via
+// /api/images/[id]. This works identically in local dev and on read-only
+// hosting like Vercel, with no external storage service required.
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
@@ -15,32 +17,40 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    if (!file.type.startsWith("image/")) {
+      return NextResponse.json(
+        { error: "Only image files are allowed" },
+        { status: 400 }
+      );
+    }
 
-    // Create uploads directory if it doesn't exist
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
-    await mkdir(uploadDir, { recursive: true });
+    // Vercel functions cap request bodies around 4.5MB
+    const MAX_BYTES = 4 * 1024 * 1024;
+    if (file.size > MAX_BYTES) {
+      return NextResponse.json(
+        { error: "Image is too large (max 4MB)" },
+        { status: 400 }
+      );
+    }
 
-    // Generate unique filename
+    const buffer = Buffer.from(await file.arrayBuffer());
+
     const ext = path.extname(file.name);
-    const baseName = path.basename(file.name, ext).replace(/[^a-zA-Z0-9]/g, "-");
-    const uniqueName = `${baseName}-${Date.now()}${ext}`;
-    const filePath = path.join(uploadDir, uniqueName);
+    const baseName = path.basename(file.name, ext).replace(/[^a-zA-Z0-9]/g, "-").slice(0, 40);
+    const uniqueName = `${baseName || "image"}-${Date.now()}${ext}`;
 
-    await writeFile(filePath, buffer);
-
-    const url = `/uploads/${uniqueName}`;
-
-    // Persist to the Media library so it survives refreshes and can be managed
-    await prisma.media.create({
+    const record = await prisma.media.create({
       data: {
-        url,
+        url: "",
         filename: uniqueName,
-        mimeType: file.type || null,
-        size: file.size,
+        mimeType: file.type,
+        size: buffer.length,
+        data: buffer,
       },
     });
+
+    const url = `/api/images/${record.id}`;
+    await prisma.media.update({ where: { id: record.id }, data: { url } });
 
     return NextResponse.json({ url, filename: uniqueName, size: file.size });
   } catch (error) {

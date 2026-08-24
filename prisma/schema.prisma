@@ -702,6 +702,7 @@ model Media {
   width    Int?
   height   Int?
   folder   String? // for organization
+  data     Bytes? // image bytes stored directly in the database (works on read-only hosts like Vercel)
 
   createdAt DateTime @default(now())
 
