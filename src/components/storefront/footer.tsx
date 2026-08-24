@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { MapPin, Mail, Phone } from "lucide-react";
+import { LogoMark } from "./logo-mark";
 import styles from "./footer.module.css";
 
 interface StorefrontFooterProps {
@@ -27,7 +28,9 @@ export function StorefrontFooter({ settings = {} }: StorefrontFooterProps) {
                 />
               ) : (
                 <>
-                  <div className={styles.logoIconWrapper}>🌸</div>
+                  <div className={styles.logoIconWrapper}>
+                    <LogoMark className={styles.logoIconSvg} />
+                  </div>
                   <span className={styles.logoText}>
                     {settings.siteName || "Hearthside Yarn"}
                   </span>

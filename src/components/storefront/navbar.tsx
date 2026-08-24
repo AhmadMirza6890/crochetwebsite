@@ -8,6 +8,7 @@ import { useWishlist } from "@/context/wishlist-context";
 import { CartDrawer } from "./cart-drawer";
 import { ThemeToggle } from "./theme-toggle";
 import { SearchModal } from "./search-modal";
+import { LogoMark } from "./logo-mark";
 import styles from "./navbar.module.css";
 
 interface StorefrontNavbarProps {
@@ -63,7 +64,9 @@ export function StorefrontNavbar({ settings = {} }: StorefrontNavbarProps) {
                 />
               ) : (
                 <>
-                  <div className={styles.logoIconWrapper}>🌸</div>
+                  <div className={styles.logoIconWrapper}>
+                    <LogoMark className={styles.logoIconSvg} />
+                  </div>
                   <span className={`${styles.logoText} ${scrolled ? styles.logoTextScrolled : ""}`}>
                     {settings.siteName || "Hearthside Yarn"}
                   </span>

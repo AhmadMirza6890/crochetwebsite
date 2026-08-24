@@ -70,13 +70,17 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 1rem;
-  background: linear-gradient(to top right, #E11D48, #EC4899);
-  color: white;
+  background: #FAF6F0;
+  border: 1.5px solid #EADFCE;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
-  box-shadow: 0 4px 6px -1px rgba(236, 72, 153, 0.2);
+  box-shadow: 0 4px 6px -1px rgba(140, 74, 43, 0.18);
+}
+
+.logoIconSvg {
+  width: 78%;
+  height: 78%;
 }
 
 .logoText {
