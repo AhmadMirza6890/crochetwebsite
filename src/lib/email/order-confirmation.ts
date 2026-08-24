@@ -1,6 +1,7 @@
 import { APP_NAME, APP_URL } from "@/lib/constants";
 import { readFile } from "fs/promises";
 import path from "path";
+import prisma from "@/lib/prisma";
 import type { MailAttachment } from "./mailer";
 
 export interface OrderEmailItem {
@@ -81,9 +82,11 @@ const IMAGE_MIME: Record<string, string> = {
 };
 
 /**
- * Locally uploaded images (/uploads/...) live on this server, which email
- * clients can't reach — especially http://localhost in dev. Embedding them
- * as inline CID attachments makes product photos render in every inbox.
+ * Product images can't just be remote links — Gmail blocks/proxies them and
+ * DB-stored uploads may sit behind hosting restrictions. So we embed them as
+ * inline CID attachments, which renders reliably in every inbox:
+ *  - /api/images/{id} → bytes straight from Postgres
+ *  - /uploads/...     → legacy files read from disk
  */
 async function resolveItemImage(
   item: OrderEmailItem,
@@ -91,6 +94,32 @@ async function resolveItemImage(
 ): Promise<{ html: string; attachment: MailAttachment | null }> {
   const cid = `itemimg_${index}`;
   const src = item.productImage;
+
+  const imgTag = `<img src="cid:${cid}" alt="${escapeHtml(item.productName)}" width="72" height="72" style="display:block;width:72px;height:72px;object-fit:cover;border-radius:10px;border:1px solid ${BORDER};" />`;
+
+  // New uploads live in Postgres — load the bytes directly.
+  const dbMatch = src?.match(/^\/api\/images\/([a-zA-Z0-9]+)$/);
+  if (dbMatch) {
+    try {
+      const media = await prisma.media.findUnique({
+        where: { id: dbMatch[1] },
+        select: { data: true, mimeType: true },
+      });
+      if (media?.data) {
+        return {
+          html: imgTag,
+          attachment: {
+            filename: `product-${index + 1}.${(media.mimeType || "image/png").split("/")[1] || "png"}`,
+            content: Buffer.from(media.data),
+            cid,
+            contentType: media.mimeType || "image/png",
+          },
+        };
+      }
+    } catch {
+      // fall through to absolute URL fallback
+    }
+  }
 
   if (src && src.startsWith("/uploads/")) {
     try {
@@ -103,10 +132,7 @@ async function resolveItemImage(
         cid,
         contentType: IMAGE_MIME[ext] || "application/octet-stream",
       };
-      return {
-        html: `<img src="cid:${cid}" alt="${escapeHtml(item.productName)}" width="72" height="72" style="display:block;width:72px;height:72px;object-fit:cover;border-radius:10px;border:1px solid ${BORDER};" />`,
-        attachment,
-      };
+      return { html: imgTag, attachment };
     } catch {
       // file missing on disk — fall through to absolute URL
     }
