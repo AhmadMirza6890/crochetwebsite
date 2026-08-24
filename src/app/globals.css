@@ -1,26 +1,230 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   🌸 HANDMADE BY JANNAH — LUXURY PINK CROCHET BOUTIQUE DESIGN SYSTEM
+   ========================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* 🌸 Romantic Pastel Pink & Rose Palette */
+  --bg-main: #FFF0F4;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #FDF2F5;
+  --bg-accent: #FCE7EC;
+  
+  --text-main: #2E0513;
+  --text-muted: #7A2840;
+  --text-light: #B35E77;
+  
+  --primary-pink: #E11D48;
+  --primary-hover: #BE123C;
+  --pink-vibrant: #EC4899;
+  --pink-pastel: #F472B6;
+  --pink-baby: #FCE7F3;
+  --pink-border: #FBCFE8;
+
+  --shadow-pink: 0 10px 30px -5px rgba(225, 29, 72, 0.12), 0 4px 12px -2px rgba(225, 29, 72, 0.06);
+  --shadow-glow: 0 0 25px rgba(236, 72, 153, 0.35);
+
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --bg-main: #14050C;
+  --bg-surface: #1E0A14;
+  --bg-subtle: #290E1B;
+  --bg-accent: #3A1327;
+  
+  --text-main: #FFF0F4;
+  --text-muted: #E89EAE;
+  --text-light: #B87284;
+  
+  --primary-pink: #F472B6;
+  --primary-hover: #FB7185;
+  --pink-vibrant: #F472B6;
+  --pink-pastel: #FB7185;
+  --pink-baby: #381121;
+  --pink-border: #4D1831;
+
+  --shadow-pink: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 25px rgba(244, 114, 182, 0.25);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base resets & typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* Selection & Scrollbar */
+::selection {
+  background-color: #FBCFE8;
+  color: #BE123C;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pink-border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-pink);
+}
+
+/* ==========================================================================
+   ✨ LUXURY BUTTONS & COMPONENTS (Guaranteed alignment & gorgeous styling)
+   ========================================================================== */
+
+.btn-pink-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.875rem;
+  background: linear-gradient(135deg, #E11D48 0%, #EC4899 100%);
+  color: #FFFFFF !important;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px -3px rgba(225, 29, 72, 0.35);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.btn-pink-primary:hover {
+  background: linear-gradient(135deg, #BE123C 0%, #DB2777 100%);
+  box-shadow: 0 12px 25px -2px rgba(225, 29, 72, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-pink-primary:active {
+  transform: translateY(0);
+}
+
+.btn-pink-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.875rem;
+  background: #FFFFFF;
+  color: #E11D48 !important;
+  border: 1.5px solid #FBCFE8;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.dark .btn-pink-secondary {
+  background: #1E0A14;
+  color: #F472B6 !important;
+  border-color: #4D1831;
+}
+
+.btn-pink-secondary:hover {
+  background: #FFF0F4;
+  border-color: #F472B6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(225, 29, 72, 0.12);
+}
+
+.dark .btn-pink-secondary:hover {
+  background: #2D0E1D;
+}
+
+/* Badge Pills */
+.badge-pink-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  background-color: #FCE7F3;
+  color: #BE123C;
+  border: 1px solid #FBCFE8;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dark .badge-pink-pill {
+  background-color: #2E0B19;
+  color: #F472B6;
+  border-color: #4D1831;
+}
+
+/* Luxury Cards */
+.card-pink-luxe {
+  background-color: #FFFFFF;
+  border: 1px solid #FCE7EC;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 20px -2px rgba(225, 29, 72, 0.06);
+  transition: all 0.35s ease;
+}
+
+.dark .card-pink-luxe {
+  background-color: #1E0A14;
+  border-color: #381122;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+}
+
+.card-pink-luxe:hover {
+  border-color: #FBCFE8;
+  box-shadow: 0 12px 30px -4px rgba(225, 29, 72, 0.14);
+  transform: translateY(-4px);
+}
+
+.dark .card-pink-luxe:hover {
+  border-color: #631C3D;
+}
+
+/* Text gradients */
+.text-gradient-rose {
+  background: linear-gradient(135deg, #E11D48 0%, #EC4899 50%, #F43F5E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

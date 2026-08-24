@@ -1,0 +1,345 @@
+.emptyContainer {
+  max-width: 36rem; /* xl */
+  margin: 0 auto;
+  padding: 6rem 1rem;
+  text-align: center;
+}
+
+.emptyIconWrapper {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 9999px;
+  background-color: #FFF1F2; /* rose-50 */
+  color: #F43F5E; /* rose-500 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+}
+
+:global(.dark) .emptyIconWrapper {
+  background-color: rgba(76, 5, 25, 0.4); /* rose-950/40 approx */
+}
+
+.emptyIcon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.emptyTitle {
+  font-size: 1.875rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #111827; /* foreground */
+  margin-bottom: 0.5rem;
+}
+
+:global(.dark) .emptyTitle {
+  color: #F9FAFB;
+}
+
+.emptyText {
+  color: #6B7280; /* muted-foreground */
+  margin-bottom: 2rem;
+}
+
+.exploreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background-color: #7A2840; /* brand-brown */
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  box-shadow: 0 4px 6px -1px rgba(122, 40, 64, 0.2); /* shadow-warm */
+  transition: background-color 0.2s ease;
+}
+
+.exploreBtn:hover {
+  background-color: #5d1e30;
+}
+
+.exploreIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.container {
+  background-color: rgba(255, 250, 240, 0.4); /* brand-cream/40 */
+  min-height: 100vh;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+:global(.dark) .container {
+  background-color: #030712; /* gray-950 */
+}
+
+.wrapper {
+  max-width: 80rem; /* 7xl */
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .wrapper {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #E5E7EB; /* border */
+  margin-bottom: 2rem;
+}
+
+:global(.dark) .header {
+  border-bottom-color: #374151;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #2E0513; /* brand-charcoal */
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 2.25rem;
+  }
+}
+
+:global(.dark) .title {
+  color: #FFFFFF;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+.clearBtn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #E11D48; /* rose-600 */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0;
+}
+
+.clearBtn:hover {
+  text-decoration: underline;
+}
+
+:global(.dark) .clearBtn {
+  color: #FB7185; /* rose-400 */
+}
+
+.clearIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.card {
+  background-color: #FFFFFF;
+  border-radius: 1.5rem;
+  border: 1px solid #E5E7EB;
+  overflow: hidden;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+:global(.dark) .card {
+  background-color: #111827;
+  border-color: #374151;
+}
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 4 / 5; /* aspect-product */
+  background-color: #FAF8F5; /* brand-ivory */
+}
+
+:global(.dark) .imageWrapper {
+  background-color: #1F2937;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem; /* 4xl */
+}
+
+.removeBtn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.625rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #F43F5E; /* rose-500 */
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.removeBtn:hover {
+  background-color: #F43F5E;
+  color: #FFFFFF;
+}
+
+:global(.dark) .removeBtn {
+  background-color: rgba(17, 24, 39, 0.9); /* gray-900/90 */
+}
+
+.removeIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.cardBody {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.category {
+  font-size: 0.625rem; /* 10px */
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #7A2840; /* brand-brown */
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.productName {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  color: #111827; /* foreground */
+  text-decoration: none;
+  transition: color 0.2s ease;
+  margin-top: 0.125rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.productName:hover {
+  color: #7A2840;
+}
+
+:global(.dark) .productName {
+  color: #F9FAFB;
+}
+
+.price {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #111827;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+:global(.dark) .price {
+  color: #F9FAFB;
+}
+
+.moveBtn {
+  width: 100%;
+  padding: 0.625rem 1rem;
+  background-color: #7A2840;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.moveBtn:hover {
+  background-color: #5d1e30;
+}
+
+.moveIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+}

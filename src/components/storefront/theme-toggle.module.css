@@ -1,0 +1,45 @@
+.toggleBtn {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: transparent;
+  color: #2E0513;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.toggleBtn:hover {
+  background-color: rgba(122, 40, 64, 0.1);
+}
+
+:global(.dark) .toggleBtn {
+  color: #FFFFFF;
+}
+
+:global(.dark) .toggleBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.iconWrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #7A2840;
+}
+
+:global(.dark) .icon {
+  color: #FFF0F4;
+}

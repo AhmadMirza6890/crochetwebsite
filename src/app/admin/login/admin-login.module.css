@@ -1,0 +1,226 @@
+.container {
+  background-color: #F3F4F6; /* gray-100 */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+:global(.dark) .container {
+  background-color: #030712; /* gray-950 */
+}
+
+.box {
+  width: 100%;
+  max-width: 28rem; /* md */
+  background-color: #FFFFFF;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .box {
+    padding: 2.5rem;
+  }
+}
+
+:global(.dark) .box {
+  background-color: #111827;
+  border-color: #1F2937;
+}
+
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.logo {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background-color: #7A2840; /* brand-brown */
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 1.25rem;
+  font-weight: 700;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+}
+
+.title {
+  font-size: 1.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #111827; /* gray-900 */
+  margin: 0;
+}
+
+:global(.dark) .title {
+  color: #FFFFFF;
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  color: #6B7280; /* gray-500 */
+  margin: 0;
+}
+
+:global(.dark) .subtitle {
+  color: #9CA3AF; /* gray-400 */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6B7280; /* gray-500 */
+  margin-bottom: 0.375rem;
+}
+
+:global(.dark) .label {
+  color: #9CA3AF; /* gray-400 */
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: #9CA3AF; /* gray-400 */
+}
+
+.inputField {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  background-color: #F9FAFB; /* gray-50 */
+  border: 1px solid #E5E7EB; /* gray-200 */
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  color: #111827;
+  transition: all 0.2s ease;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: rgba(122, 40, 64, 0.4);
+  box-shadow: 0 0 0 2px rgba(122, 40, 64, 0.2);
+}
+
+:global(.dark) .inputField {
+  background-color: #1F2937; /* gray-800 */
+  border-color: #374151; /* gray-700 */
+  color: #F9FAFB;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 0.875rem;
+  background-color: #7A2840; /* brand-brown */
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(122, 40, 64, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background-color: #5d1e30; /* brand-brown-dark */
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 1rem;
+  height: 1rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.alertBox {
+  padding: 1rem;
+  background-color: #FFFBEB; /* amber-50 */
+  border: 1px solid #FDE68A; /* amber-200 */
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  color: #92400E; /* amber-800 */
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+:global(.dark) .alertBox {
+  background-color: rgba(69, 26, 3, 0.4); /* amber-950/40 */
+  border-color: #78350F; /* amber-900 */
+  color: #FCD34D; /* amber-300 */
+}
+
+.alertIcon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.footer {
+  text-align: center;
+}
+
+.footerLink {
+  font-size: 0.75rem;
+  color: #6B7280; /* gray-500 */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footerLink:hover {
+  color: #7A2840; /* brand-brown */
+}

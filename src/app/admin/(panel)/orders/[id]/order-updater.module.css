@@ -1,0 +1,200 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem; /* gap-3 */
+}
+
+.statusContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* gap-2 */
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB; /* gray-200 */
+  padding: 0.375rem; /* p-1.5 */
+  border-radius: 1rem; /* rounded-2xl */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+}
+
+:global(.dark) .statusContainer {
+  background-color: #111827; /* gray-900 */
+  border-color: #1F2937; /* gray-800 */
+}
+
+.statusLabel {
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em; /* tracking-wider */
+  color: #9CA3AF; /* gray-400 */
+  padding-left: 0.5rem; /* pl-2 */
+}
+
+.statusSelect {
+  background: transparent;
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #111827; /* gray-900 */
+  padding: 0.25rem 0.5rem; /* px-2 py-1 */
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+:global(.dark) .statusSelect {
+  color: #FFFFFF;
+}
+
+.optionItem {
+  background-color: #FFFFFF;
+}
+
+:global(.dark) .optionItem {
+  background-color: #111827;
+}
+
+.spinner {
+  width: 0.875rem; /* w-3.5 */
+  height: 0.875rem;
+  color: #7A2840; /* brand-brown */
+  margin-right: 0.25rem; /* pr-1 */
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.trackingBtn {
+  padding: 0.5rem 1rem; /* px-4 py-2 */
+  background-color: #F3F4F6; /* bg-gray-100 */
+  color: #374151; /* text-gray-700 */
+  border: none;
+  border-radius: 1rem; /* rounded-2xl */
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem; /* gap-1.5 */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+}
+
+.trackingBtn:hover {
+  background-color: #7A2840; /* hover:bg-brand-brown */
+  color: #FFFFFF;
+}
+
+:global(.dark) .trackingBtn {
+  background-color: #1F2937; /* dark:bg-gray-800 */
+  color: #D1D5DB; /* dark:text-gray-300 */
+}
+
+:global(.dark) .trackingBtn:hover {
+  background-color: #7A2840;
+  color: #FFFFFF;
+}
+
+.btnIcon {
+  width: 0.875rem; /* w-3.5 */
+  height: 0.875rem;
+}
+
+.trackingFormWrapper {
+  width: 100%;
+  margin-top: 0.5rem; /* mt-2 */
+  padding: 1rem; /* p-4 */
+  background-color: #FFFFFF;
+  border-radius: 1rem; /* rounded-2xl */
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* space-y-3 */
+}
+
+:global(.dark) .trackingFormWrapper {
+  background-color: #111827;
+  border-color: #1F2937;
+}
+
+.trackingFormTitle {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.75rem; /* text-xs */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #111827;
+}
+
+:global(.dark) .trackingFormTitle {
+  color: #FFFFFF;
+}
+
+.trackingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* gap-2 */
+}
+
+@media (min-width: 640px) {
+  .trackingForm {
+    flex-direction: row;
+  }
+}
+
+.inputField {
+  flex: 1;
+  padding: 0.5rem 0.75rem; /* px-3 py-2 */
+  background-color: #F9FAFB; /* gray-50 */
+  border: 1px solid #E5E7EB;
+  border-radius: 0.75rem; /* rounded-xl */
+  font-size: 0.75rem; /* text-xs */
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #7A2840;
+  box-shadow: 0 0 0 2px rgba(122, 40, 64, 0.2);
+}
+
+:global(.dark) .inputField {
+  background-color: #1F2937;
+  border-color: #374151; /* gray-700 */
+  color: #FFFFFF;
+}
+
+.saveBtn {
+  padding: 0.5rem 1rem;
+  background-color: #7A2840;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem; /* gap-1 */
+}
+
+.saveBtn:hover:not(:disabled) {
+  background-color: #5d1e30; /* brand-brown-dark */
+}
+
+.saveBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

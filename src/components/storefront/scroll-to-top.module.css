@@ -1,0 +1,27 @@
+.button {
+  position: fixed;
+  bottom: 1.5rem; /* bottom-6 */
+  right: 1.5rem; /* right-6 */
+  z-index: 40; /* z-40 */
+  width: 3rem; /* w-12 */
+  height: 3rem; /* h-12 */
+  border-radius: 9999px; /* rounded-full */
+  background-color: #7A2840; /* bg-brand-brown */
+  color: #FFFFFF; /* text-white */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(122, 40, 64, 0.3), 0 4px 6px -2px rgba(122, 40, 64, 0.15); /* shadow-warm-lg */
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #5d1e30; /* hover:bg-brand-brown-dark */
+}
+
+.icon {
+  width: 1.25rem; /* w-5 */
+  height: 1.25rem; /* h-5 */
+}

@@ -1,0 +1,100 @@
+.actionsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem; /* gap-2 */
+}
+
+.primaryActions {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem; /* gap-1.5 */
+}
+
+.statusSelect {
+  font-size: 0.75rem; /* text-xs */
+  background-color: #F3F4F6; /* gray-100 */
+  border: 1px solid #E5E7EB; /* gray-200 */
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 0.25rem 0.5rem; /* px-2 py-1 */
+  font-weight: 700;
+  color: #374151; /* gray-700 */
+  outline: none;
+}
+
+:global(.dark) .statusSelect {
+  background-color: #1F2937; /* gray-800 */
+  border-color: #374151; /* gray-700 */
+  color: #D1D5DB; /* gray-300 */
+}
+
+.quoteBtn {
+  padding: 0.375rem; /* p-1.5 */
+  border-radius: 0.75rem;
+  background-color: rgba(122, 40, 64, 0.1); /* brand-brown/10 */
+  color: #7A2840; /* brand-brown */
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quoteBtn:hover {
+  background-color: #7A2840;
+  color: #FFFFFF;
+}
+
+.btnIcon {
+  width: 1rem; /* w-4 */
+  height: 1rem; /* h-4 */
+}
+
+.quoteForm {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.25rem; /* mt-1 */
+}
+
+.quoteInput {
+  width: 7rem; /* w-28 */
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  background-color: #FFFFFF;
+  border: 1px solid #D1D5DB; /* gray-300 */
+  border-radius: 0.5rem; /* rounded-lg */
+  outline: none;
+  font-family: inherit;
+}
+
+:global(.dark) .quoteInput {
+  background-color: #1F2937;
+  border-color: #374151;
+  color: #FFFFFF;
+}
+
+.saveQuoteBtn {
+  padding: 0.25rem; /* p-1 */
+  background-color: #7A2840;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.saveQuoteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.smallIcon {
+  width: 0.875rem; /* w-3.5 */
+  height: 0.875rem;
+}

@@ -1,0 +1,254 @@
+.section {
+  padding: 4rem 0;
+  background: linear-gradient(to bottom, #FFF0F4, #FCE7EC);
+}
+
+@media (min-width: 640px) {
+  .section {
+    padding: 6rem 0;
+  }
+}
+
+:global(.dark) .section {
+  background: linear-gradient(to bottom, #14050C, #1E0A14);
+}
+
+.container {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+.badgeWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  background-color: #FCE7F3;
+  color: #BE123C;
+  border: 1px solid #FBCFE8;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+:global(.dark) .badge {
+  background-color: #2E0B19;
+  color: #F472B6;
+  border-color: #4D1831;
+}
+
+.badgeIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+  color: #E11D48;
+}
+
+.heading {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: #2E0513;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .heading {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .heading {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+:global(.dark) .heading {
+  color: #FFF0F4;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: #7A2840;
+  font-weight: 500;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .subtitle {
+    font-size: 1rem;
+  }
+}
+
+:global(.dark) .subtitle {
+  color: #E89EAE;
+}
+
+.formContainer {
+  max-width: 28rem;
+  margin: 0 auto;
+  width: 100%;
+  padding-top: 0.5rem;
+}
+
+.successBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  background-color: #FFFFFF;
+  border: 1px solid #FBCFE8;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  color: #BE123C;
+}
+
+:global(.dark) .successBox {
+  background-color: #1E0A14;
+  border-color: #4D1831;
+  color: #F9A8D4;
+}
+
+.successIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  color: #E11D48;
+}
+
+.successText {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.successCode {
+  text-decoration: underline;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .form {
+    flex-direction: row;
+  }
+}
+
+.inputWrapper {
+  position: relative;
+  flex: 1 1 0%;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: #F472B6;
+}
+
+.input {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 2.75rem;
+  background-color: #FFFFFF;
+  border: 1px solid #FBCFE8;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #2E0513;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #E11D48;
+}
+
+.input::placeholder {
+  color: #F9A8D4;
+}
+
+:global(.dark) .input {
+  background-color: #1E0A14;
+  border-color: #4D1831;
+  color: #FFF0F4;
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.875rem;
+  background: linear-gradient(135deg, #E11D48 0%, #EC4899 100%);
+  color: #FFFFFF;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px -3px rgba(225, 29, 72, 0.35);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #BE123C 0%, #DB2777 100%);
+  box-shadow: 0 12px 25px -2px rgba(225, 29, 72, 0.45);
+  transform: translateY(-2px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btnIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

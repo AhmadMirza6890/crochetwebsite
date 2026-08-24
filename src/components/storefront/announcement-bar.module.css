@@ -1,0 +1,40 @@
+.container {
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 3rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.text {
+  text-align: center;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.25rem;
+  border-radius: 9999px;
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.closeBtn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.closeIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+}

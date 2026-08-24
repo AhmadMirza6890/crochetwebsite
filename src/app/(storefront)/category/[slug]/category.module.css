@@ -1,0 +1,263 @@
+.container {
+  background-color: rgba(255, 250, 240, 0.4); /* brand-cream/40 */
+  min-height: 100vh;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+:global(.dark) .container {
+  background-color: #030712; /* gray-950 */
+}
+
+.wrapper {
+  max-width: 80rem; /* 7xl */
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .wrapper {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.headerSection {
+  margin-bottom: 2rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7A2840; /* brand-brown */
+  text-decoration: none;
+  transition: color 0.2s ease;
+  margin-bottom: 1rem;
+}
+
+.backLink:hover {
+  color: #5d1e30; /* brand-brown-dark */
+}
+
+:global(.dark) .backLink {
+  color: #F9FAFB;
+}
+
+.backIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+@media (min-width: 640px) {
+  .headerContent {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+:global(.dark) .headerContent {
+  border-bottom-color: #374151;
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7A2840; /* brand-brown */
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.375rem;
+}
+
+:global(.dark) .badge {
+  color: #FFF0F4;
+}
+
+.badgeIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #2E0513; /* brand-charcoal */
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 2.25rem;
+  }
+}
+
+:global(.dark) .title {
+  color: #FFFFFF;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin-top: 0.5rem;
+  max-width: 36rem;
+  margin-bottom: 0;
+}
+
+.count {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+.emptyState {
+  background-color: #FFFFFF;
+  border-radius: 1.5rem;
+  padding: 3rem;
+  text-align: center;
+  border: 1px solid #E5E7EB;
+}
+
+:global(.dark) .emptyState {
+  background-color: #111827;
+  border-color: #374151;
+}
+
+.emptyIconWrapper {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  background-color: #FFF0F4; /* brand-cream */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem auto;
+  font-size: 1.875rem;
+}
+
+:global(.dark) .emptyIconWrapper {
+  background-color: #1F2937;
+}
+
+.emptyTitle {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+:global(.dark) .emptyTitle {
+  color: #F9FAFB;
+}
+
+.emptyText {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin-top: 0.5rem;
+  max-width: 24rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+}
+
+.emptyActions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.primaryBtn {
+  padding: 0.625rem 1.5rem;
+  background-color: #7A2840; /* brand-brown */
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.primaryBtn:hover {
+  background-color: #5d1e30; /* brand-brown-dark */
+}
+
+.secondaryBtn {
+  padding: 0.625rem 1.5rem;
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  color: #111827;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.secondaryBtn:hover {
+  background-color: #F3F4F6;
+}
+
+:global(.dark) .secondaryBtn {
+  background-color: #1F2937;
+  border-color: #374151;
+  color: #F9FAFB;
+}
+
+:global(.dark) .secondaryBtn:hover {
+  background-color: #374151;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,276 @@
+.container {
+  min-height: 100vh;
+  padding: 3rem 1.5rem 5rem;
+  background: #FAF6F0;
+}
+
+:global(.dark) .container {
+  background: #1A120B;
+}
+
+.wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 2.75rem;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  background: rgba(140, 74, 43, 0.1);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8C4A2B;
+}
+
+.heroBadgeIcon {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.heroTitle {
+  margin: 1rem 0 0.75rem;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #3E2F23;
+}
+
+:global(.dark) .heroTitle {
+  color: #FFF8EF;
+}
+
+.heroText {
+  margin: 0 auto;
+  max-width: 480px;
+  color: #8A7563;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.sectionTitle {
+  margin: 0 0 1.15rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #3E2F23;
+}
+
+:global(.dark) .sectionTitle {
+  color: #FFF8EF;
+}
+
+.rulesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+@media (max-width: 680px) {
+  .rulesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ruleCard {
+  padding: 1.5rem 1.25rem;
+  background: #FFFFFF;
+  border: 1px solid #EADFCE;
+  border-radius: 1.1rem;
+  text-align: center;
+}
+
+:global(.dark) .ruleCard {
+  background: #241A12;
+  border-color: #4A3626;
+}
+
+.ruleIconWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  background: rgba(140, 74, 43, 0.1);
+  border-radius: 50%;
+  margin-bottom: 0.85rem;
+}
+
+.ruleIcon {
+  width: 1.35rem;
+  height: 1.35rem;
+  color: #8C4A2B;
+}
+
+.ruleTitle {
+  margin: 0 0 0.45rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #3E2F23;
+}
+
+:global(.dark) .ruleTitle {
+  color: #FFF8EF;
+}
+
+.ruleText {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: #8A7563;
+}
+
+.dosDontsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+@media (max-width: 620px) {
+  .dosDontsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.listCard {
+  padding: 1.4rem 1.5rem;
+  border-radius: 1.1rem;
+}
+
+.doCard {
+  background: rgba(76, 122, 76, 0.07);
+  border: 1px solid rgba(76, 122, 76, 0.3);
+}
+
+.dontCard {
+  background: rgba(220, 38, 38, 0.05);
+  border: 1px solid rgba(220, 38, 38, 0.22);
+}
+
+.listTitle {
+  margin: 0 0 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #3E2F23;
+}
+
+:global(.dark) .listTitle {
+  color: #FFF8EF;
+}
+
+.listTitleIcon {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.doCard .listTitleIcon {
+  color: #4C7A4C;
+}
+
+.dontCard .listTitleIcon {
+  color: #DC2626;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.list li {
+  position: relative;
+  padding-left: 1.15rem;
+  font-size: 0.83rem;
+  line-height: 1.55;
+  color: #8A7563;
+}
+
+.doItem::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4C7A4C;
+  font-weight: 700;
+}
+
+.dontItem::before {
+  content: "✕";
+  position: absolute;
+  left: 0;
+  color: #DC2626;
+  font-weight: 700;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+@media (max-width: 620px) {
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.productCard {
+  padding: 1.3rem 1.4rem;
+  background: #FFFFFF;
+  border: 1px solid #EADFCE;
+  border-radius: 1.1rem;
+}
+
+:global(.dark) .productCard {
+  background: #241A12;
+  border-color: #4A3626;
+}
+
+.productTitle {
+  margin: 0 0 0.45rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #8C4A2B;
+}
+
+:global(.dark) .productTitle {
+  color: #E4C9AC;
+}
+
+.productTip {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: #8A7563;
+}
+
+.noteBox {
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(135deg, rgba(140, 74, 43, 0.08), rgba(180, 83, 42, 0.06));
+  border: 1px solid rgba(140, 74, 43, 0.2);
+  border-radius: 1.1rem;
+  text-align: center;
+}
+
+.noteText {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: #8A7563;
+  font-style: italic;
+}
