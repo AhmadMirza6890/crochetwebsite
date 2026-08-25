@@ -248,7 +248,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
             </h2>
             <div className={styles.formGrid}>
               <div className={styles.formGroup}>
-                <label className={styles.label}>Price *</label>
+                <label className={styles.label}>Price (Rs) *</label>
                 <input
                   type="number"
                   step="0.01"
@@ -261,7 +261,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
                 />
               </div>
               <div className={styles.formGroup}>
-                <label className={styles.label}>Sale Price</label>
+                <label className={styles.label}>Sale Price (Rs)</label>
                 <input
                   type="number"
                   step="0.01"

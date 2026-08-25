@@ -2,12 +2,33 @@
 
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
 import { generateOrderNumber } from "@/lib/utils";
+import { APP_URL } from "@/lib/constants";
 import type { CheckoutInput } from "@/lib/validators";
 import { evaluateCoupon, type CouponLike } from "@/lib/coupons";
 import { buildOrderConfirmationEmail, type OrderEmailData } from "@/lib/email/order-confirmation";
 import { buildOrderStatusEmail } from "@/lib/email/order-status";
 import { sendMail } from "@/lib/email/mailer";
+
+/**
+ * Resolve the public base URL from the incoming request so email links point
+ * at the real domain (e.g. the Vercel deployment) instead of a hardcoded
+ * fallback — a wrong base URL is what makes email buttons 404.
+ */
+async function getAppUrl(): Promise<string> {
+  try {
+    const h = await headers();
+    const host = h.get("x-forwarded-host") || h.get("host");
+    if (host) {
+      const proto = h.get("x-forwarded-proto") || (host.startsWith("localhost") ? "http" : "https");
+      return `${proto}://${host}`;
+    }
+  } catch {
+    // headers unavailable (e.g. background context) — fall back to env
+  }
+  return APP_URL;
+}
 
 const fallbackOrders = [
   {
@@ -312,7 +333,9 @@ export async function createOrder(data: CheckoutInput & { items: Array<{ product
 
   // Send confirmation email to the customer (never blocks a completed order)
   try {
-    const email = await buildOrderConfirmationEmail({
+    const appUrl = await getAppUrl();
+    const email = await buildOrderConfirmationEmail(
+      {
       orderNumber: order.orderNumber,
       createdAt: order.createdAt,
       customerName: order.customerName,
@@ -334,7 +357,9 @@ export async function createOrder(data: CheckoutInput & { items: Array<{ product
       shippingMethod: order.shippingMethod,
       paymentMethod: order.paymentMethod,
       shippingAddress: order.shippingAddress as OrderEmailData["shippingAddress"],
-    });
+      },
+      appUrl
+    );
 
     await sendMail({
       to: order.customerEmail,
@@ -409,13 +434,17 @@ export async function updateOrderStatus(id: string, status: string) {
 
   // Notify the customer automatically when an admin moves the order along
   try {
-    const email = buildOrderStatusEmail({
-      orderNumber: order.orderNumber,
-      customerName: order.customerName,
-      status,
-      trackingNumber: order.trackingNumber,
-      trackingUrl: order.trackingUrl,
-    });
+    const appUrl = await getAppUrl();
+    const email = buildOrderStatusEmail(
+      {
+        orderNumber: order.orderNumber,
+        customerName: order.customerName,
+        status,
+        trackingNumber: order.trackingNumber,
+        trackingUrl: order.trackingUrl,
+      },
+      appUrl
+    );
     await sendMail({
       to: order.customerEmail,
       subject: email.subject,

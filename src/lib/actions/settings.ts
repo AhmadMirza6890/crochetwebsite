@@ -35,8 +35,8 @@ export async function getSiteSettings() {
       pinterest: "https://pinterest.com",
       footerText: "Unique handmade crochet pieces crafted slowly, beautifully, and especially for you. Each creation carries a piece of our heart.",
       freeShippingThreshold: 50,
-      currency: "USD",
-      currencySymbol: "$",
+      currency: "PKR",
+      currencySymbol: "Rs",
       createdAt: new Date(),
       updatedAt: new Date(),
     };

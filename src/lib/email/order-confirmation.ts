@@ -2,6 +2,7 @@ import { APP_NAME, APP_URL } from "@/lib/constants";
 import { readFile } from "fs/promises";
 import path from "path";
 import prisma from "@/lib/prisma";
+import { formatPrice } from "@/lib/utils";
 import type { MailAttachment } from "./mailer";
 
 export interface OrderEmailItem {
@@ -55,13 +56,13 @@ function escapeHtml(value: unknown): string {
 }
 
 function money(amount: number): string {
-  return `$${(amount ?? 0).toFixed(2)}`;
+  return formatPrice(amount);
 }
 
-function toAbsoluteUrl(url?: string | null): string | null {
+function toAbsoluteUrl(url?: string | null, base: string = APP_URL): string | null {
   if (!url) return null;
   if (/^https?:\/\//i.test(url)) return url;
-  return `${APP_URL}${url.startsWith("/") ? "" : "/"}${url}`;
+  return `${base}${url.startsWith("/") ? "" : "/"}${url}`;
 }
 
 function formatDate(date: Date | string): string {
@@ -90,7 +91,8 @@ const IMAGE_MIME: Record<string, string> = {
  */
 async function resolveItemImage(
   item: OrderEmailItem,
-  index: number
+  index: number,
+  base: string
 ): Promise<{ html: string; attachment: MailAttachment | null }> {
   const cid = `itemimg_${index}`;
   const src = item.productImage;
@@ -138,7 +140,7 @@ async function resolveItemImage(
     }
   }
 
-  const image = toAbsoluteUrl(src);
+  const image = toAbsoluteUrl(src, base);
   return {
     html: image
       ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(item.productName)}" width="72" height="72" style="display:block;width:72px;height:72px;object-fit:cover;border-radius:10px;border:1px solid ${BORDER};" />`
@@ -170,7 +172,10 @@ function itemRow(item: OrderEmailItem, imageHtml: string): string {
   </tr>`;
 }
 
-export async function buildOrderConfirmationEmail(order: OrderEmailData): Promise<{
+export async function buildOrderConfirmationEmail(
+  order: OrderEmailData,
+  baseUrl: string = APP_URL
+): Promise<{
   subject: string;
   html: string;
   text: string;
@@ -179,7 +184,7 @@ export async function buildOrderConfirmationEmail(order: OrderEmailData): Promis
   const firstName = order.customerName.trim().split(/\s+/)[0] || "there";
 
   const resolved = await Promise.all(
-    order.items.map((item, i) => resolveItemImage(item, i))
+    order.items.map((item, i) => resolveItemImage(item, i, baseUrl))
   );
   const rows = order.items
     .map((item, i) => itemRow(item, resolved[i].html))
@@ -237,7 +242,7 @@ export async function buildOrderConfirmationEmail(order: OrderEmailData): Promis
     ``,
     `Each piece is crocheted by hand especially for you. We will email you tracking details as soon as your order ships.`,
     ``,
-    `${APP_NAME} — ${APP_URL}`,
+    `${APP_NAME} — ${baseUrl}`,
   ]
     .filter((line) => line !== "")
     .join("\n");
@@ -351,7 +356,7 @@ export async function buildOrderConfirmationEmail(order: OrderEmailData): Promis
                 Because every piece is made to order, please allow a little extra time before dispatch.
                 We'll email you as soon as your parcel is on its way, complete with tracking details.
               </p>
-              <a href="${APP_URL}/shop"
+              <a href="${baseUrl}/shop"
                  style="display:inline-block;background-color:${BRAND_PRIMARY};color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:1px;text-decoration:none;padding:14px 34px;border-radius:999px;">
                  CONTINUE SHOPPING
               </a>

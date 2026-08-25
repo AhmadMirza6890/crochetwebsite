@@ -36,11 +36,15 @@ function escapeHtml(value: unknown): string {
     .replace(/'/g, "&#39;");
 }
 
-export function buildOrderStatusEmail(order: OrderStatusEmailData): {
+export function buildOrderStatusEmail(
+  order: OrderStatusEmailData,
+  baseUrl: string = APP_URL
+): {
   subject: string;
   html: string;
   text: string;
 } {
+  const trackUrl = `${baseUrl}/track-order?orderNumber=${encodeURIComponent(order.orderNumber)}`;
   const firstName = order.customerName.trim().split(/\s+/)[0] || "there";
   const statusLabel = ORDER_STATUSES[order.status as keyof typeof ORDER_STATUSES]?.label ?? order.status;
   const message = STATUS_MESSAGES[order.status] ?? `The status of your order is now "${statusLabel}".`;
@@ -57,7 +61,7 @@ export function buildOrderStatusEmail(order: OrderStatusEmailData): {
       ? ["", `Tracking number: ${order.trackingNumber ?? "-"}`, order.trackingUrl ? `Track at: ${order.trackingUrl}` : ""]
       : []),
     "",
-    `You can also track anytime: ${APP_URL}/track-order?orderNumber=${order.orderNumber}`,
+    `You can also track anytime: ${trackUrl}`,
     "",
     `${APP_NAME}`,
   ]
@@ -106,7 +110,7 @@ export function buildOrderStatusEmail(order: OrderStatusEmailData): {
                   : ""
               }
 
-              <a href="${APP_URL}/track-order?orderNumber=${encodeURIComponent(order.orderNumber)}"
+              <a href="${trackUrl}"
                  style="display:inline-block;margin-top:24px;background-color:${BRAND_PRIMARY};color:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;letter-spacing:1px;text-decoration:none;padding:12px 30px;border-radius:999px;">
                  TRACK MY ORDER
               </a>

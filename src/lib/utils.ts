@@ -5,8 +5,20 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatPrice(price: number, currency = "$"): string {
-  return `${currency}${price.toFixed(2)}`;
+export const DEFAULT_CURRENCY_SYMBOL = "Rs";
+
+function groupThousands(intPart: string): string {
+  return intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+/**
+ * PKR-first money formatting: "Rs 2,500" (decimals only when they exist).
+ * The currency param stays for flexibility; every call site uses the default.
+ */
+export function formatPrice(price: number, currency = DEFAULT_CURRENCY_SYMBOL): string {
+  if (!Number.isFinite(price)) price = 0;
+  const [int, dec] = price.toFixed(2).split(".");
+  return `${currency} ${groupThousands(int)}${dec !== "00" ? `.${dec}` : ""}`;
 }
 
 export function generateOrderNumber(): string {
