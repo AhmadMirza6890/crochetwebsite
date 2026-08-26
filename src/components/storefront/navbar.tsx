@@ -8,6 +8,7 @@ import { useWishlist } from "@/context/wishlist-context";
 import { CartDrawer } from "./cart-drawer";
 import { ThemeToggle } from "./theme-toggle";
 import { SearchModal } from "./search-modal";
+import { MobileMenu } from "./mobile-menu";
 import { LogoMark } from "./logo-mark";
 import styles from "./navbar.module.css";
 
@@ -136,6 +137,8 @@ export function StorefrontNavbar({ settings = {} }: StorefrontNavbarProps) {
           </div>
         </div>
       </header>
+
+      <MobileMenu open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
 
       <CartDrawer />
       

@@ -7,6 +7,7 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(251, 207, 232, 0.5);
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 .headerScrolled {
@@ -272,5 +273,16 @@
 @media (min-width: 640px) {
   .accountBtn {
     display: flex;
+  }
+}
+
+/* Smaller action buttons on narrow screens */
+@media (max-width: 380px) {
+  .actionBtn {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  .actions {
+    gap: 0.25rem;
   }
 }
