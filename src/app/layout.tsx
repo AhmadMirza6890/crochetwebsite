@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { OfflineProvider } from "@/components/offline/offline-provider";
+import { CapacitorBackButton } from "@/components/offline/capacitor-back-button";
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
@@ -71,7 +73,10 @@ export default function RootLayout({
       <body
         className={`${playfairDisplay.variable} ${inter.variable} font-body antialiased`}
       >
-        {children}
+        <OfflineProvider>
+          {children}
+          <CapacitorBackButton />
+        </OfflineProvider>
         <Toaster
           position="top-right"
           toastOptions={{

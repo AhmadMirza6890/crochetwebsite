@@ -2,15 +2,17 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useOffline } from "@/components/offline/offline-provider";
 
 export function StorefrontAutoRefresh({ intervalMs = 30000 }: { intervalMs?: number }) {
   const router = useRouter();
+  const { isOffline } = useOffline();
 
   useEffect(() => {
     let inFlight = false;
 
     const refresh = async () => {
-      if (document.hidden || inFlight) return;
+      if (document.hidden || inFlight || isOffline) return;
       inFlight = true;
       try {
         await router.refresh();

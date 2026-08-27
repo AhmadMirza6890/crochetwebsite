@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HearthsideYarn</string>
+    <string name="title_activity_main">HearthsideYarn</string>
+    <string name="package_name">com.hearthsideyarn.app</string>
+    <string name="custom_url_scheme">com.hearthsideyarn.app</string>
+</resources>
