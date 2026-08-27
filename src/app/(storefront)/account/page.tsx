@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { User, Package, MapPin, KeyRound, LogOut, Clock, CheckCircle2, Truck, ExternalLink } from "lucide-react";
+import { User, Package, MapPin, KeyRound, LogOut, Clock, CheckCircle2, Truck, ExternalLink, Shield } from "lucide-react";
 import { formatPrice, formatDate } from "@/lib/utils";
 import { ORDER_STATUSES } from "@/lib/constants";
 import Link from "next/link";
@@ -108,6 +108,13 @@ export default function CustomerAccountPage() {
               ))}
 
               <div className={styles.signOutWrapper}>
+                <Link
+                  href="/admin/login"
+                  className={styles.navBtn}
+                >
+                  <Shield className={styles.navIcon} />
+                  <span>Admin Login</span>
+                </Link>
                 <Link
                   href="/login"
                   className={styles.signOutBtn}

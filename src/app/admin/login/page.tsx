@@ -32,7 +32,11 @@ export default function AdminLoginPage() {
       toast.success("Welcome to the Admin Dashboard!");
       window.location.assign("/admin/dashboard");
     } catch {
-      toast.error("Login failed. Please try again.");
+      if (typeof navigator !== "undefined" && !navigator.onLine) {
+        toast.error("Internet connection required to sign in");
+      } else {
+        toast.error("Login failed. Please try again.");
+      }
       setLoading(false);
     }
   };
