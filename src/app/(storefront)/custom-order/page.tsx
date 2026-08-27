@@ -51,6 +51,12 @@ export default function CustomOrderPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!form.phone.trim()) {
+      toast.error("Phone number is required");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -172,7 +178,7 @@ export default function CustomOrderPage() {
 
               <div className={styles.inputGroup}>
                 <label className={styles.inputLabel}>
-                  Phone (Optional)
+                  Phone Number *
                 </label>
                 <input
                   type="tel"
@@ -180,6 +186,7 @@ export default function CustomOrderPage() {
                   value={form.phone}
                   onChange={handleChange}
                   placeholder="+1 (555) 000-0000"
+                  required
                   className={styles.inputField}
                 />
               </div>
