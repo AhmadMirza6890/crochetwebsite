@@ -65,7 +65,7 @@ export default function CheckoutPage() {
       return;
     }
 
-    if (!formData.customerName || !formData.customerEmail || !formData.street || !formData.city || !formData.postalCode) {
+    if (!formData.customerName || !formData.customerEmail || !formData.customerPhone || !formData.street || !formData.city || !formData.postalCode) {
       toast.error("Please fill in all required shipping fields");
       return;
     }
@@ -181,7 +181,7 @@ export default function CheckoutPage() {
                 </div>
                 <div>
                   <label className={styles.inputLabel}>
-                    Phone Number (Optional)
+                    Phone Number *
                   </label>
                   <input
                     type="tel"
@@ -189,6 +189,7 @@ export default function CheckoutPage() {
                     value={formData.customerPhone}
                     onChange={handleChange}
                     placeholder="+92 3XX XXXXXXX"
+                    required
                     className={styles.inputField}
                   />
                 </div>
